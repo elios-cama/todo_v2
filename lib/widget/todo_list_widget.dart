@@ -8,16 +8,18 @@ import 'package:provider/provider.dart';
 class TodoListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final provider =  Provider.of<TodosProvider>(context);
+    final provider = Provider.of<TodosProvider>(context);
     final todos = provider.todos;
-    return ListView.builder(
-      physics: BouncingScrollPhysics(),
-      
-      itemCount: todos.length,
-      itemBuilder: (context, index){
-          final todo = todos[index];
-          return TodoWidget(todo: todo);
-      }
-      );
+
+    return todos.isEmpty
+        ? Center(child: Text("There's no tasks yet"))
+        : ListView.builder(
+            physics: BouncingScrollPhysics(),
+            padding: EdgeInsets.all(20),
+            itemCount: todos.length,
+            itemBuilder: (context, index) {
+              final todo = todos[index];
+              return TodoWidget(todo: todo);
+            });
   }
 }

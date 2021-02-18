@@ -1,3 +1,4 @@
+import 'package:Todo_v2/provider/todos.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:Todo_v2/widget/type_button.dart';
@@ -5,6 +6,8 @@ import 'package:Todo_v2/constants.dart';
 import 'package:Todo_v2/widget/time_button.dart';
 import 'package:intl/intl.dart';
 import 'package:Todo_v2/widget/category_button.dart';
+import 'package:Todo_v2/model/todo.dart';
+import 'package:provider/provider.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 class AddTaskScreen extends StatefulWidget {
@@ -79,6 +82,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         date = picked;
         dayDate = DateFormat.Md().format(date);
         dateTitle = dayDate;
+        
         
       });
   }
@@ -291,7 +295,19 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                         fit: BoxFit.cover)),
                 child: FlatButton(
                     onPressed: () {
-                      
+                      final todo = Todo(
+                          createdTime: DateTime.now(),
+                          title: title,
+                          type: type,
+                          date: dayDate,
+                          time: _dayTime,
+                          category: category,
+                      );
+                      print(date);
+                      print(time);
+                      final provider = Provider.of<TodosProvider>(context, listen : false); 
+                      provider.addTodo(todo);
+                      Navigator.of(context).pop();
                       
                     },
                     child: Text('Create Task', style: kTextDecoration)),
