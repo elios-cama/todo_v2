@@ -28,6 +28,7 @@ class EditTaskScreen extends StatefulWidget {
   String dayTime;
   String dateTitle = 'Select a date';
   String timeTitle = 'Select Time';
+  Function onSavedTodo;
   EditTaskScreen({
     this.title,
     this.importantButtonState,
@@ -44,7 +45,8 @@ class EditTaskScreen extends StatefulWidget {
     this.dayDate,
     this.dayTime,
     this.dateTitle,
-    this.timeTitle
+    this.timeTitle,
+    this.onSavedTodo
   });
   @override
   _EditTaskScreenState createState() => _EditTaskScreenState();
@@ -220,7 +222,10 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                         hintText: title,
                         fillColor: Color(0xFF292E3C)),
                     onChanged: (value) {
-                      title = value;
+                      setState(() {
+                         title = value;
+                      });
+                     
                     },
                   ),
                 ),
@@ -386,6 +391,8 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                             fit: BoxFit.cover)),
                     child: FlatButton(
                         onPressed: () {
+                          print('tis is $dayDate');
+                          print(widget.dayDate);
                           final todo = Todo(
                               createdTime: DateTime.now(),
                               title: title,
@@ -395,9 +402,12 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
                               category: category,
                           );
                           final provider  = Provider.of<TodosProvider>(context, listen: false);
+                          print(dayDate);
                           provider.updateTodo(todo, title, type, dayDate, _dayTime, category);
                           Navigator.pop(context);
                         },
+                        
+                        
                         child: Text('Update Task', style: kTextDecoration)),
                   ),
                 ),

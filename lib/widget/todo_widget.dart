@@ -105,7 +105,7 @@ class _TodoWidgetState extends State<TodoWidget> {
               Transform.scale(
                 scale: 1.5,
                 child: Container(
-                  padding: EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.only(left: 5),
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(5)),
                   child: ClipRRect(

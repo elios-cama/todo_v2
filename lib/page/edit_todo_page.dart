@@ -1,4 +1,5 @@
 import 'package:Todo_v2/model/todo.dart';
+import 'package:Todo_v2/provider/todos.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:Todo_v2/page/add_task_page.dart';
@@ -29,20 +30,26 @@ class _EditTodoPageState extends State<EditTodoPage> {
     time = widget.todo.time;
     category = widget.todo.category;
   }
+  void saveTodo(){
+      final provider = Provider.of<TodosProvider>(context, listen : false);
+      provider.updateTodo(widget.todo, title, type, date, time, category);
+      
+    }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       
       body: EditTaskScreen(
-        title: widget.todo.title,
-        type: widget.todo.type,
-        category: widget.todo.category,
-        dayDate : widget.todo.date,
-        dayTime: widget.todo.time,
-        
+        title: title,
+        type: type,
+        category: category,
+        dayDate : date,
+        dayTime: time,
+       
         
 
       ),
     );
+    
   }
 }
