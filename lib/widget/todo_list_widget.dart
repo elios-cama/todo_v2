@@ -12,7 +12,7 @@ class TodoListWidget extends StatelessWidget {
     final todos = provider.todos;
 
     return todos.isEmpty
-        ? Center(child: Text("There's no tasks yet"))
+        ? Center(child: Text("There's no tasks yet", style: TextStyle(color: Colors.white, fontSize: 15),))
         : ListView.builder(
             physics: BouncingScrollPhysics(),
             padding: EdgeInsets.all(20),

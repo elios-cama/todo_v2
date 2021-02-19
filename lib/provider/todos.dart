@@ -1,50 +1,27 @@
+import 'package:Todo_v2/api/firebase_api.dart';
 import 'package:Todo_v2/model/todo.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:Todo_v2/api/firebase_api.dart';
 
 class TodosProvider extends ChangeNotifier{
-   List<Todo> _todos = [
-     Todo(
-       createdTime: DateTime.now(),
-        title: 'Go to the gym',
-        type: 'planned',
-        date: '22/02',
-        time : '11:45',
-        category: 'Workout',
-        
-        ),
-      Todo(
-       createdTime: DateTime.now(),
-        title: 'Make dinner',
-        type: 'Important',
-        date: '22/02',
-        time : '19:45',
-        category: 'Food',
-        
-        ),
-      Todo(
-       createdTime: DateTime.now(),
-        title: 'Finish the app',
-        type: 'important',
-        date: '26/02',
-        time : '11:00',
-        category: 'Work',
-        
-        )
-   ];
+   List<Todo> _todos = [];
    List<Todo> get todos {
      return _todos;
    }
-   void addTodo(Todo todo){
-     _todos.add(todo);
-     notifyListeners();
-   }
-   void removeTodo(Todo todo){
-     _todos.remove(todo);
-     notifyListeners();
-   }
+   void addTodo(Todo todo) => FirebaseApi.createTodo(todo);
+
+  void setTodos(List<Todo> todos) =>
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _todos = todos;
+        notifyListeners();
+      });
+
+   void removeTodo(Todo todo) => FirebaseApi.deleteTodo(todo);
+
+
    bool toggleTodoStatus(Todo todo){
      todo.isDone = !todo.isDone;
-     notifyListeners();
+     FirebaseApi.updateTodo(todo);
      return todo.isDone;
    }
 
@@ -54,7 +31,7 @@ class TodosProvider extends ChangeNotifier{
     todo.date = date;
     todo.time = time;
     todo.category = category;
-    notifyListeners();
+    FirebaseApi.updateTodo(todo);
   }
 
 }

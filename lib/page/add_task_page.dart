@@ -108,7 +108,15 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.purple.shade900,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          colors: [
+            const Color(0xFF252041),
+            const Color(0xFF1D1F25)
+          ]
+        )
+      ),
       child: Scaffold(
         resizeToAvoidBottomPadding: false,
         resizeToAvoidBottomInset: false,
@@ -156,7 +164,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     }),
                     size: 98,
                     colour: importantButtonState
-                        ? Color(0xFF3532B6)
+                        ? Color(0xFF2765FA)
                         : Colors.transparent,
                   ),
                   SizedBox(

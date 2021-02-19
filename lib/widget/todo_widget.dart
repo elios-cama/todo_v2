@@ -20,8 +20,8 @@ class _TodoWidgetState extends State<TodoWidget> {
   bool isFood = false;
   Color iconBackgroundColor;
 
-  void deleteTodo(BuildContext context, Todo todo){
-    final provider = Provider.of<TodosProvider>(context, listen : false);
+  void deleteTodo(BuildContext context, Todo todo) {
+    final provider = Provider.of<TodosProvider>(context, listen: false);
     provider.removeTodo(todo);
     Utils.showSnackBar(context, 'Deleted the task');
   }
@@ -78,24 +78,22 @@ class _TodoWidgetState extends State<TodoWidget> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius : BorderRadius.circular(15),
+      borderRadius: BorderRadius.circular(15),
       child: Slidable(
         actionPane: SlidableDrawerActionPane(),
         key: Key(widget.todo.id),
         actions: [
           IconSlideAction(
-            color: Colors.green,
+            color: Colors.yellow,
             onTap: () => editTodo(context, widget.todo),
-            caption: 'Edit',
-            icon: Icons.edit,
+            icon: FontAwesomeIcons.penAlt,
           )
         ],
         secondaryActions: [
           IconSlideAction(
             color: Colors.red,
-            caption: 'Delete',
             onTap: () => deleteTodo(context, widget.todo),
-            icon: Icons.delete,
+            icon: FontAwesomeIcons.trashAlt,
           )
         ],
         child: Container(
@@ -116,10 +114,8 @@ class _TodoWidgetState extends State<TodoWidget> {
                       height: Checkbox.width,
                       child: Container(
                         decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 2.5,
-                            color: Colors.transparent
-                          ),
+                          border:
+                              Border.all(width: 2.5, color: Colors.transparent),
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: Theme(
@@ -134,10 +130,17 @@ class _TodoWidgetState extends State<TodoWidget> {
 
                             //   });
                             // },
-                            onChanged: (_){
-                              final provider = Provider.of<TodosProvider>(context, listen: false);
-                              final isDone = provider.toggleTodoStatus(widget.todo);
-                              Utils.showSnackBar(context, isDone? 'Task completed' : 'Task marked incomple');
+                            onChanged: (_) {
+                              final provider = Provider.of<TodosProvider>(
+                                  context,
+                                  listen: false);
+                              final isDone =
+                                  provider.toggleTodoStatus(widget.todo);
+                              Utils.showSnackBar(
+                                  context,
+                                  isDone
+                                      ? 'Task completed'
+                                      : 'Task marked incomple');
                             },
                             activeColor: Color(0xFF65FFA7),
                             checkColor: Colors.black,
@@ -156,11 +159,18 @@ class _TodoWidgetState extends State<TodoWidget> {
                 child: Container(
                   padding: EdgeInsets.all(16),
                   margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: widget.todo.isDone
-                          ? Color(0xFF2765FA)
-                          : Color(0xFF292E3C)),
+                  decoration: widget.todo.isDone
+                      ? BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          gradient: LinearGradient(
+                              begin: Alignment.bottomLeft,
+                              colors: [
+                                const Color(0xFF0441A7),
+                                const Color(0xFF045AC5),
+                              ]))
+                      : BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Color(0xFF292E3C)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -188,7 +198,7 @@ class _TodoWidgetState extends State<TodoWidget> {
                           Text(
                             widget.todo.time,
                             style: TextStyle(
-                                fontSize: 15, color: Colors.grey.shade700),
+                                fontSize: 15, color: Colors.white),
                           ),
                           Text(widget.todo.date)
                         ],

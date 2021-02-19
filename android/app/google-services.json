@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "515234699640",
+    "project_id": "todov2-85c4d",
+    "storage_bucket": "todov2-85c4d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515234699640:android:5e2c0ef39c61ee6b2bd08d",
+        "android_client_info": {
+          "package_name": "com.elioscama.Todo_v2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "515234699640-ueujtkr2abj2dflfih465opuhdppq9bm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrW3khl99QyznfR9a4Zbh4GY2sc8-zG3g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "515234699640-ueujtkr2abj2dflfih465opuhdppq9bm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

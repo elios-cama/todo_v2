@@ -176,7 +176,15 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.purple.shade900,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          colors: [
+            const Color(0xFF252041),
+            const Color(0xFF1D1F25)
+          ]
+        )
+      ),
       child: Scaffold(
         resizeToAvoidBottomPadding: false,
         resizeToAvoidBottomInset: false,
