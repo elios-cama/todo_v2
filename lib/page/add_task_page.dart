@@ -311,8 +311,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                           time: _dayTime,
                           category: category,
                       );
-                      print(date);
-                      print(time);
+                      
                       final provider = Provider.of<TodosProvider>(context, listen : false); 
                       provider.addTodo(todo);
                       Navigator.of(context).pop();

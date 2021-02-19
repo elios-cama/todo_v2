@@ -13,6 +13,7 @@ class FirebaseApi{
   }
   static Stream<List<Todo>> readTodos() => FirebaseFirestore.instance
       .collection('todo')
+      .orderBy('CreatedTime', descending :true)
       .snapshots()
       .transform(Utils.transformer(Todo.fromJson));
 
